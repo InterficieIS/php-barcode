@@ -1,13 +1,13 @@
 {
-    "name": "jucksearm/php-barcode",
+    "name": "interficieis/php-barcode",
     "description": "Barcode Generation Package inspired by Nicola Asuni.",
     "keywords": ["barcode","qrcode","QR Code","CODE 128","DATAMATRIX","PDF417","php barcode"],
     "type": "library",
     "license": "LGPLv3",
     "authors": [
         {
-            "name": "Jucksearm",
-            "email": "jucksearm.bkk@gmail.com"
+            "name": "David Martínez",
+            "email": "david.martinez@interficie.com"
         }
     ],
     "minimum-stability": "stable",

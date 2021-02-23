@@ -1,13 +1,14 @@
 <?php
 
 use jucksearm\barcode\Datamatrix;
- 
-class DatamatrixTest extends PHPUnit_Framework_TestCase {
- 
+
+class DatamatrixTest extends \PHPUnit\Framework\TestCase {
+
  	private $class;
  	private $tmpDir;
 
-    function setUp() {
+    protected function setUp(): void
+    {
         $this->class = new Datamatrix;
         $this->tmpDir = dirname(dirname(__FILE__)).'/tmp';
     }
@@ -39,7 +40,7 @@ class DatamatrixTest extends PHPUnit_Framework_TestCase {
     function testCreatePngDatamatrix() {
     	$data = $this->class->factory()->setCode('https://github.com/jucksearm/php-barcode')
     	  ->getDatamatrixPngData();
-		  
+
 		$this->assertNotEmpty($data);
     }
 
@@ -48,7 +49,7 @@ class DatamatrixTest extends PHPUnit_Framework_TestCase {
     	$data = $this->class->factory()->setCode('https://github.com/jucksearm/php-barcode')
 		  ->setFile($file)
 		  ->getDatamatrixPngData();
-		
+
 		$this->assertTrue(is_file($this->tmpDir.DIRECTORY_SEPARATOR.$file));
 
 		unlink($this->tmpDir.DIRECTORY_SEPARATOR.$file);
@@ -57,7 +58,7 @@ class DatamatrixTest extends PHPUnit_Framework_TestCase {
     function testCreateSvgDatamatrix() {
     	$data = $this->class->factory()->setCode('https://github.com/jucksearm/php-barcode')
 		  ->getDatamatrixSvgData();
-		  
+
 		$this->assertNotEmpty($data);
     }
 
@@ -66,9 +67,9 @@ class DatamatrixTest extends PHPUnit_Framework_TestCase {
     	$data = $this->class->factory()->setCode('https://github.com/jucksearm/php-barcode')
 		  ->setFile($file)
 		  ->getDatamatrixSvgData();
-		
+
 		$this->assertTrue(is_file($this->tmpDir.DIRECTORY_SEPARATOR.$file));
-		
+
 		unlink($this->tmpDir.DIRECTORY_SEPARATOR.$file);
     }
 }

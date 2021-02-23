@@ -1,16 +1,19 @@
 <?php
 
 use jucksearm\barcode\Barcode;
- 
-class BarcodeTest extends PHPUnit_Framework_TestCase {
- 
+use PHPUnit\Framework\TestCase;
+
+class BarcodeTest extends TestCase {
+
  	private $class;
  	private $tmpDir;
 
-    function setUp() {
+    protected function setUp(): void
+    {
         $this->class = new Barcode;
         $this->tmpDir = dirname(dirname(__FILE__)).'/tmp';
     }
+
 
     function testHasTmpDirectory()
     {
@@ -43,7 +46,7 @@ class BarcodeTest extends PHPUnit_Framework_TestCase {
     	$data = $this->class->factory()->setCode('https://github.com/jucksearm/php-barcode')
 		  ->setType('C128')
 		  ->getBarcodePngData();
-		  
+
 		$this->assertNotEmpty($data);
     }
 
@@ -53,7 +56,7 @@ class BarcodeTest extends PHPUnit_Framework_TestCase {
 		  ->setType('C128')
 		  ->setFile($file)
 		  ->getBarcodePngData();
-		
+
 		$this->assertTrue(is_file($this->tmpDir.DIRECTORY_SEPARATOR.$file));
 
 		unlink($this->tmpDir.DIRECTORY_SEPARATOR.$file);
@@ -63,7 +66,7 @@ class BarcodeTest extends PHPUnit_Framework_TestCase {
     	$data = $this->class->factory()->setCode('https://github.com/jucksearm/php-barcode')
 		  ->setType('C128')
 		  ->getBarcodeSvgData();
-		  
+
 		$this->assertNotEmpty($data);
     }
 
@@ -73,9 +76,9 @@ class BarcodeTest extends PHPUnit_Framework_TestCase {
 		  ->setType('C128')
 		  ->setFile($file)
 		  ->getBarcodeSvgData();
-		
+
 		$this->assertTrue(is_file($this->tmpDir.DIRECTORY_SEPARATOR.$file));
-		
+
 		unlink($this->tmpDir.DIRECTORY_SEPARATOR.$file);
     }
 }

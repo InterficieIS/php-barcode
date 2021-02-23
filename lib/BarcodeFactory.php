@@ -226,6 +226,7 @@ class BarcodeFactory
 		$bcd = $this->barcode->getBarcodeArray();
 		$rotate = $this->rotate;
 		$color = $this->rgbColor;
+		$imagick = false;
 
 		if ($rotate == 0 || $rotate%180 == 0) {
 			$w = $this->scale;

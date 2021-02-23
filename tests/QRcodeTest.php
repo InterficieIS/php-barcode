@@ -1,13 +1,14 @@
 <?php
 
 use jucksearm\barcode\QRcode;
- 
-class QRcodeTest extends PHPUnit_Framework_TestCase {
- 
+
+class QRcodeTest extends \PHPUnit\Framework\TestCase {
+
  	private $class;
  	private $tmpDir;
 
-    function setUp() {
+    protected function setUp(): void
+    {
         $this->class = new QRcode;
         $this->tmpDir = dirname(dirname(__FILE__)).'/tmp';
     }
@@ -41,7 +42,7 @@ class QRcodeTest extends PHPUnit_Framework_TestCase {
     function testCreatePngQRcode() {
     	$data = $this->class->factory()->setCode('https://github.com/jucksearm/php-barcode')
     	  ->getQRcodePngData();
-		  
+
 		$this->assertNotEmpty($data);
     }
 
@@ -50,16 +51,16 @@ class QRcodeTest extends PHPUnit_Framework_TestCase {
     	$data = $this->class->factory()->setCode('https://github.com/jucksearm/php-barcode')
 		  ->setFile($file)
 		  ->getQRcodePngData();
-		
+
 		$this->assertTrue(is_file($this->tmpDir.DIRECTORY_SEPARATOR.$file));
-        
+
 		unlink($this->tmpDir.DIRECTORY_SEPARATOR.$file);
     }
 
     function testCreateSvgQRcode() {
     	$data = $this->class->factory()->setCode('https://github.com/jucksearm/php-barcode')
 		  ->getQRcodeSvgData();
-		  
+
 		$this->assertNotEmpty($data);
     }
 
@@ -68,9 +69,9 @@ class QRcodeTest extends PHPUnit_Framework_TestCase {
     	$data = $this->class->factory()->setCode('https://github.com/jucksearm/php-barcode')
 		  ->setFile($file)
 		  ->getQRcodeSvgData();
-		
+
 		$this->assertTrue(is_file($this->tmpDir.DIRECTORY_SEPARATOR.$file));
-		
+
 		unlink($this->tmpDir.DIRECTORY_SEPARATOR.$file);
     }
 }

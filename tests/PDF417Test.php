@@ -1,13 +1,14 @@
 <?php
 
 use jucksearm\barcode\PDF417;
- 
-class PDF417Test extends PHPUnit_Framework_TestCase {
- 
+
+class PDF417Test extends \PHPUnit\Framework\TestCase {
+
  	private $class;
  	private $tmpDir;
 
-    function setUp() {
+    protected function setUp(): void
+    {
         $this->class = new PDF417;
         $this->tmpDir = dirname(dirname(__FILE__)).'/tmp';
     }
@@ -39,7 +40,7 @@ class PDF417Test extends PHPUnit_Framework_TestCase {
     function testCreatePngPDF417() {
     	$data = $this->class->factory()->setCode('https://github.com/jucksearm/php-barcode')
     	  ->getPDF417PngData();
-		  
+
 		$this->assertNotEmpty($data);
     }
 
@@ -48,7 +49,7 @@ class PDF417Test extends PHPUnit_Framework_TestCase {
     	$data = $this->class->factory()->setCode('https://github.com/jucksearm/php-barcode')
 		  ->setFile($file)
 		  ->getPDF417PngData();
-		
+
 		$this->assertTrue(is_file($this->tmpDir.DIRECTORY_SEPARATOR.$file));
 
 		unlink($this->tmpDir.DIRECTORY_SEPARATOR.$file);
@@ -57,7 +58,7 @@ class PDF417Test extends PHPUnit_Framework_TestCase {
     function testCreateSvgPDF417() {
     	$data = $this->class->factory()->setCode('https://github.com/jucksearm/php-barcode')
 		  ->getPDF417SvgData();
-		  
+
 		$this->assertNotEmpty($data);
     }
 
@@ -66,9 +67,9 @@ class PDF417Test extends PHPUnit_Framework_TestCase {
     	$data = $this->class->factory()->setCode('https://github.com/jucksearm/php-barcode')
 		  ->setFile($file)
 		  ->getPDF417SvgData();
-		
+
 		$this->assertTrue(is_file($this->tmpDir.DIRECTORY_SEPARATOR.$file));
-		
+
 		unlink($this->tmpDir.DIRECTORY_SEPARATOR.$file);
     }
 }
